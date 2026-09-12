@@ -37,5 +37,26 @@ def generate_note(note,duration):
     )
     wave=np.sin(2*np.pi*frequency*t)
     return wave 
-    
+melody=[
+    ("C4", 0.5),
+    ("E4", 0.5),
+    ("G4", 0.5),
+    ("E4", 0.5)
+]
+melody_wave=np.array([])
+for note, duration in melody:
+    wave= generate_note(note, duration)
+    melody_wave=np.concatenate(
+        (melody_wave,wave)
+    )
+sf.write(
+    "melody.wav",
+    melody_wave,
+    sample_rate
+)
+print("A4 =", note_frequency("A4"))
+print("C4 =", note_frequency("C4"))
+print("A5 =", note_frequency("A5"))
+
+print("Melody generated!")
 
