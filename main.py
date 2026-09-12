@@ -2,20 +2,8 @@ import numpy as np
 import soundfile as sf 
 
 sample_rate=44100
-duration=2
-t= np.linspace(
-    0,
-    duration,
-    int(sample_rate*duration),
-    endpoint=False
-)
-frequency = 440
 
-wave = np.sin(2 * np.pi * frequency * t)
-
-sf.write("note.wav", wave, sample_rate) 
-
-def note_freq(note):
+def note_frequency(note):
     notes={
         "C": 0,
         "C#": 1,
@@ -30,3 +18,24 @@ def note_freq(note):
         "A#": 10,
         "B": 11
     }
+    name = note[:-1]
+    octave = int(note[-1])
+    midi_number=notes[name]+12*(octave+1)
+    frequency= 440 * 2 ** ((midi_number - 69) / 12)
+    return frequency
+print(note_frequency("A4"))
+print(note_frequency("C4"))
+print(note_frequency("E4"))
+
+def generate_note(note,duration):
+    frequency= note_frequency(note)
+    t = np.linspace(
+        0,
+        duration,
+        int(sample_rate * duration),
+        endpoint=False
+    )
+    wave=np.sin(2*np.pi*frequency*t)
+    return wave 
+    
+
