@@ -238,6 +238,14 @@ pymusic/
 
 ---
 
+## troubleshooting
+
+- **harsh digital distortion**: the master bus applies `np.tanh` soft saturation followed by a `-0.7 dBFS` ceiling. if custom multi-voice tracks overdrive excessively, scale down master pre-gain (e.g. `master *= 0.10`).
+- **variable track counts**: if loading a custom midi with fewer or more tracks than `len(instruments)`, `min(index, len(instruments) - 1)` ensures graceful fallback to valid voice profiles without out-of-bounds indexing.
+- **soundfile backend**: `soundfile` bundles pre-compiled `libsndfile` binaries for windows, macos, and linux; no external system libraries are needed.
+
+---
+
 ## stack
 
 - **numpy** - vector calculations, harmonic generation, signal arrays
