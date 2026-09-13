@@ -162,6 +162,20 @@ all sound design parameters can be tuned directly in `main.py`:
 - **decay rates**: tweak the `envelope(length, decay)` factor to control sustain versus percussive pluck.
 - **saturation drive**: adjust the pre-saturation gain multiplier before `np.tanh` to vary the warmth from clean to fuzzy overdrive.
 
+### track mapping
+
+the demo project parses 7 polyphonic tracks from `Kanye West - Stronger.mid`:
+
+| Track # | Assigned Voice | Role in Mix |
+| :--- | :--- | :--- |
+| `Track 0` | `piano` | primary harmonic progression & foundational chords |
+| `Track 1` | `harpsichord` | rhythmic syncopated counterpoint & upper register sparkle |
+| `Track 2` | `piano` | mid-register harmonic reinforcement |
+| `Track 3` | `synth` | main aggressive electronic hook lead |
+| `Track 4` | `drums` | percussive rhythm channel |
+| `Track 5` | `guitar` | dynamic melodic fills and accents |
+| `Track 6` | `saw` | raw sub-saw bassline and low-end drive |
+
 ---
 
 ## technical specifications
