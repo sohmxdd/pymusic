@@ -42,9 +42,12 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
      $$s_{\text{piano}}(t) = \sin(2\pi ft) + 0.5\sin(4\pi ft) + 0.25\sin(6\pi ft)$$
    - `harpsichord`: metallic plucked timbre rich in high-order octave harmonics:
      $$s_{\text{harpsichord}}(t) = \sin(2\pi ft) + 0.35\sin(4\pi ft) + 0.15\sin(8\pi ft)$$
-   - `synth`: dual-oscillator blend (65% sawtooth wave + 35% pure sine)
-   - `guitar`: acoustic warmth via second harmonic coupling
-   - `saw`: raw bipolar sawtooth oscillator
+   - `synth`: dual-oscillator hybrid blending sawtooth buzz and sine roundness:
+     $$\text{saw}(t) = 2(ft \bmod 1) - 1, \quad s_{\text{synth}}(t) = 0.65 \cdot \text{saw}(t) + 0.35 \sin(2\pi ft)$$
+   - `guitar`: string pluck resonance with second-harmonic coupling:
+     $$s_{\text{guitar}}(t) = \sin(2\pi ft) + 0.3\sin(4\pi ft)$$
+   - `saw`: raw bipolar linear sawtooth oscillator:
+     $$s_{\text{saw}}(t) = 2(ft \bmod 1) - 1$$
 
 3. **envelope shaping**  
    notes decay exponentially over time via `np.exp(-decay * t)` to simulate physical acoustic dampening.
