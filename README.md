@@ -101,6 +101,18 @@ Master Output (.wav)
 
 ---
 
+## voice matrix
+
+| Voice | Oscillator Type | Harmonics & Weights | Decay ($\lambda$) | Character |
+| :--- | :--- | :--- | :--- | :--- |
+| `piano` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.5) + 3f_0 (0.25)$ | $2.5$ | warm acoustic tone, rich body, gentle release |
+| `harpsichord` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.35) + 4f_0 (0.15)$ | $6.0$ | sharp transient attack, metallic register |
+| `synth` | Hybrid Blend | $\text{saw}(t) \ (0.65) + \sin(2\pi ft) \ (0.35)$ | $2.0$ | cutting mid-range lead, modern electronic density |
+| `guitar` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.3)$ | $5.0$ | resonant string strike, hollow fundamental |
+| `saw` | Linear Sawtooth | $2(ft \bmod 1) - 1$ | $3.0$ | bright, aggressive, high harmonic energy |
+
+---
+
 <!-- studio / workflow / demo image placeholder -->
 <!-- <p align="center"><img src="assets/preview.png" alt="studio preview" width="100%" /></p> -->
 
