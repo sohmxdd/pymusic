@@ -59,7 +59,13 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
    $$w_{\text{note}}(t) = s(t) \cdot E(t) \cdot \left(\frac{v}{127}\right)$$
 
 4. **analog warmth & master bus**  
-   individual note buffers sum directly into an array sampled at 44.1 khz. the master bus runs through hyperbolic tangent (`np.tanh`) soft clipping for gentle compression, followed by peak normalization to -0.7 dB.
+   all active note waveforms sum into a global 64-bit floating-point master buffer sampled at 44.1 kHz. to eliminate digital hard clipping and impart tape-like harmonic warmth, the master signal passes through a hyperbolic tangent waveshaper with gain scaling:
+
+   $$y(t) = \tanh\left(0.15 \cdot x_{\text{sum}}(t)\right)$$
+
+   the saturated audio is then peak-normalized to maintain a true-peak ceiling of -0.7 dBFS ($0.92$ amplitude):
+
+   $$y_{\text{out}}(t) = 0.92 \cdot \frac{y(t)}{\max |y|}$$
 
 ---
 
