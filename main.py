@@ -1,62 +1,134 @@
-import numpy as np 
-import soundfile as sf 
+import mido
+import numpy as np
+import soundfile as sf
 
-sample_rate=44100
+SR = 44100
+BPM = 104
+BEAT = 60 / BPM
 
-def note_frequency(note):
-    notes={
-        "C": 0,
-        "C#": 1,
-        "D": 2,
-        "D#": 3,
-        "E": 4,
-        "F": 5,
-        "F#": 6,
-        "G": 7,
-        "G#": 8,
-        "A": 9,
-        "A#": 10,
-        "B": 11
-    }
-    name = note[:-1]
-    octave = int(note[-1])
-    midi_number=notes[name]+12*(octave+1)
-    frequency= 440 * 2 ** ((midi_number - 69) / 12)
-    return frequency
-print(note_frequency("A4"))
-print(note_frequency("C4"))
-print(note_frequency("E4"))
+mid = mido.MidiFile("Kanye West - Stronger.mid")
 
-def generate_note(note,duration):
-    frequency= note_frequency(note)
-    t = np.linspace(
-        0,
-        duration,
-        int(sample_rate * duration),
-        endpoint=False
-    )
-    wave=np.sin(2*np.pi*frequency*t)
-    return wave 
-melody=[
-    ("C4", 0.5),
-    ("E4", 0.5),
-    ("G4", 0.5),
-    ("E4", 0.5)
+
+def midi_frequency(note):
+    return 440 * 2 ** ((note - 69) / 12)
+
+
+def envelope(length, decay=4):
+    t = np.arange(length) / SR
+    return np.exp(-decay * t)
+
+
+def generate_note(midi_note, duration, velocity, instrument):
+    frequency = midi_frequency(midi_note)
+    length = int(duration * SR)
+    t = np.arange(length) / SR
+
+    if instrument == "piano":
+        wave = (
+            np.sin(2 * np.pi * frequency * t)
+            + 0.5 * np.sin(4 * np.pi * frequency * t)
+            + 0.25 * np.sin(6 * np.pi * frequency * t)
+        )
+        wave *= envelope(length, 2.5)
+
+    elif instrument == "harpsichord":
+        wave = (
+            np.sin(2 * np.pi * frequency * t)
+            + 0.35 * np.sin(4 * np.pi * frequency * t)
+            + 0.15 * np.sin(8 * np.pi * frequency * t)
+        )
+        wave *= envelope(length, 6)
+
+    elif instrument == "synth":
+        saw = 2 * ((frequency * t) % 1) - 1
+        sine = np.sin(2 * np.pi * frequency * t)
+        wave = 0.65 * saw + 0.35 * sine
+        wave *= envelope(length, 2)
+
+    elif instrument == "guitar":
+        wave = (
+            np.sin(2 * np.pi * frequency * t)
+            + 0.3 * np.sin(4 * np.pi * frequency * t)
+        )
+        wave *= envelope(length, 5)
+
+    elif instrument == "saw":
+        wave = 2 * ((frequency * t) % 1) - 1
+        wave *= envelope(length, 3)
+
+    else:
+        wave = np.zeros(length)
+
+    velocity_gain = velocity / 127
+    return wave * velocity_gain
+
+
+def extract_notes(track):
+    absolute_tick = 0
+    active = {}
+    notes = []
+
+    for message in track:
+        absolute_tick += message.time
+
+        if message.type == "note_on" and message.velocity > 0:
+            active[message.note] = (absolute_tick, message.velocity)
+
+        elif message.type == "note_off" or (
+            message.type == "note_on" and message.velocity == 0
+        ):
+            if message.note in active:
+                start_tick, velocity = active.pop(message.note)
+                duration = absolute_tick - start_tick
+                notes.append((start_tick, duration, message.note, velocity))
+
+    return notes
+
+
+instruments = [
+    "piano",
+    "harpsichord",
+    "piano",
+    "synth",
+    "drums",
+    "guitar",
+    "saw",
 ]
-melody_wave=np.array([])
-for note, duration in melody:
-    wave= generate_note(note, duration)
-    melody_wave=np.concatenate(
-        (melody_wave,wave)
-    )
-sf.write(
-    "melody.wav",
-    melody_wave,
-    sample_rate
-)
-print("A4 =", note_frequency("A4"))
-print("C4 =", note_frequency("C4"))
-print("A5 =", note_frequency("A5"))
 
-print("Melody generated!")
+total_ticks = 0
+for track in mid.tracks:
+    ticks = sum(message.time for message in track)
+    total_ticks = max(total_ticks, ticks)
+
+total_beats = total_ticks / mid.ticks_per_beat
+total_seconds = total_beats * BEAT
+
+master = np.zeros(int(total_seconds * SR) + SR)
+
+for index, track in enumerate(mid.tracks):
+    notes = extract_notes(track)
+    instrument = instruments[min(index, len(instruments) - 1)]
+
+    for start_tick, duration_tick, midi_note, velocity in notes:
+        start_seconds = start_tick / mid.ticks_per_beat * BEAT
+        duration_seconds = duration_tick / mid.ticks_per_beat * BEAT
+        sound = generate_note(midi_note, duration_seconds, velocity, instrument)
+
+        start_sample = int(start_seconds * SR)
+        end_sample = min(start_sample + len(sound), len(master))
+
+        master[start_sample:end_sample] += sound[:end_sample - start_sample]
+
+master *= 0.15
+master = np.tanh(master)
+
+peak = np.max(np.abs(master))
+if peak > 0:
+    master /= peak
+    master *= 0.92
+
+sf.write("stronger_code.wav",master,SR)
+
+
+
 
