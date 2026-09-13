@@ -38,8 +38,10 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
 
 2. **additive harmonic synthesis**  
    each instrument profile shapes timbre by stacking fundamental frequencies and harmonic overtones:
-   - `piano`: fundamental + second harmonic (0.5) + third harmonic (0.25)
-   - `harpsichord`: high-register presence with 4th and 8th harmonic emphasis
+   - `piano`: warm acoustic body driven by fundamental, 2nd, and 3rd harmonics:
+     $$s_{\text{piano}}(t) = \sin(2\pi ft) + 0.5\sin(4\pi ft) + 0.25\sin(6\pi ft)$$
+   - `harpsichord`: metallic plucked timbre rich in high-order octave harmonics:
+     $$s_{\text{harpsichord}}(t) = \sin(2\pi ft) + 0.35\sin(4\pi ft) + 0.15\sin(8\pi ft)$$
    - `synth`: dual-oscillator blend (65% sawtooth wave + 35% pure sine)
    - `guitar`: acoustic warmth via second harmonic coupling
    - `saw`: raw bipolar sawtooth oscillator
