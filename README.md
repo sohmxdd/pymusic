@@ -176,6 +176,26 @@ the demo project parses 7 polyphonic tracks from `Kanye West - Stronger.mid`:
 | `Track 5` | `guitar` | dynamic melodic fills and accents |
 | `Track 6` | `saw` | raw sub-saw bassline and low-end drive |
 
+### sound design cookbook
+
+adding new instrument voices is straightforward. implement an oscillator formula and envelope decay in `generate_note`:
+
+```python
+# 808 sub-bass (fundamental dominance with subtle second harmonic)
+elif instrument == "sub_808":
+    wave = np.sin(2 * np.pi * frequency * t) + 0.12 * np.sin(4 * np.pi * frequency * t)
+    wave *= envelope(length, decay=1.2)
+
+# church organ (odd-harmonic additive stack with slow decay)
+elif instrument == "organ":
+    wave = (
+        np.sin(2 * np.pi * frequency * t)
+        + 0.60 * np.sin(6 * np.pi * frequency * t)
+        + 0.35 * np.sin(10 * np.pi * frequency * t)
+    )
+    wave *= envelope(length, decay=0.8)
+```
+
 ---
 
 ## technical specifications
