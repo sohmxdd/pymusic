@@ -31,8 +31,10 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
 
 ### how it works
 
-1. **midi event extraction**  
-   parses ticks and delta times from track messages using `mido`, tracking active note durations and dynamic velocities.
+1. **midi event extraction & frequency tuning**  
+   parses delta ticks from track messages using `mido`, tracking active note durations and velocities. notes are mapped to continuous acoustic frequencies using standard 12-tone equal temperament ($A_4 = 440\text{ Hz}$):
+
+   $$f(n) = 440 \cdot 2^{\frac{n - 69}{12}}$$
 
 2. **additive harmonic synthesis**  
    each instrument profile shapes timbre by stacking fundamental frequencies and harmonic overtones:
