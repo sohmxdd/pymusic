@@ -251,3 +251,9 @@ pymusic/
 - **numpy** - vector calculations, harmonic generation, signal arrays
 - **soundfile** - high-fidelity wav encoding
 - **mido** - midi event handling and delta-time parsing
+
+---
+
+## license
+
+mit license. crafted with pure math and numpy.
