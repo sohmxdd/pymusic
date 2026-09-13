@@ -164,6 +164,20 @@ all sound design parameters can be tuned directly in `main.py`:
 
 ---
 
+## technical specifications
+
+| Parameter | Specification | Note |
+| :--- | :--- | :--- |
+| **Sample Rate** | `44,100 Hz` (CD standard) | Configurable via `SR` |
+| **Internal Bit Depth** | `64-bit IEEE Floating Point` | High-precision NumPy array accumulation |
+| **Export Format** | `16-bit PCM Linear WAV` | Encoded with `libsndfile` via `soundfile` |
+| **Peak Ceiling** | `-0.7 dBFS` ($0.92$ normalized) | True-peak clipping safety margin |
+| **Tuning Reference** | $A_4 = 440.0\text{ Hz}$ | Standard 12-TET tuning system |
+| **Polyphony** | Unlimited | Vector superposition in memory |
+| **Synthesis Type** | Additive Harmonic & Hybrid Waveshaping | Zero external sample libraries or soundfonts |
+
+---
+
 ## stack
 
 - **numpy** - vector calculations, harmonic generation, signal arrays
