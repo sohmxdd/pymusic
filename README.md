@@ -52,6 +52,10 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
 
 ## architecture
 
+<p align="center">
+  <img src="assets/signal-flow.svg" alt="signal flow architecture" width="100%" />
+</p>
+
 ```
 MIDI Input (.mid)
        │
