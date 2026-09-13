@@ -49,8 +49,14 @@ pymusic treats audio synthesis as a pure numerical problem. given a standard mid
    - `saw`: raw bipolar linear sawtooth oscillator:
      $$s_{\text{saw}}(t) = 2(ft \bmod 1) - 1$$
 
-3. **envelope shaping**  
-   notes decay exponentially over time via `np.exp(-decay * t)` to simulate physical acoustic dampening.
+3. **envelope shaping & energy dissipation**  
+   notes decay exponentially over time to emulate acoustic string dampening and percussive amplitude decay:
+
+   $$E(t) = e^{-\lambda t}$$
+
+   where $\lambda$ specifies the decay coefficient ($\lambda = 2.5$ for piano sustain, $\lambda = 6.0$ for rapid harpsichord plucking). the finished note waveform scales with MIDI velocity:
+
+   $$w_{\text{note}}(t) = s(t) \cdot E(t) \cdot \left(\frac{v}{127}\right)$$
 
 4. **analog warmth & master bus**  
    individual note buffers sum directly into an array sampled at 44.1 khz. the master bus runs through hyperbolic tangent (`np.tanh`) soft clipping for gentle compression, followed by peak normalization to -0.7 dB.
