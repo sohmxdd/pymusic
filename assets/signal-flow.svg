@@ -1,0 +1,90 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 480" width="100%" height="100%">
+  <defs>
+    <linearGradient id="card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#141418"/>
+      <stop offset="100%" stop-color="#0e0e12"/>
+    </linearGradient>
+    <linearGradient id="card-hl" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1c1c24"/>
+      <stop offset="100%" stop-color="#121218"/>
+    </linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="6" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 1 L 8 5 L 0 9 z" fill="#71717a"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1000" height="480" fill="#08080a" rx="12"/>
+
+  <!-- Stage 1: MIDI File Input -->
+  <g transform="translate(50, 200)">
+    <rect width="140" height="80" rx="8" fill="url(#card-bg)" stroke="#27272a" stroke-width="1.5"/>
+    <text x="70" y="36" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="13" font-weight="700" fill="#fafafa" text-anchor="middle">MIDI INPUT</text>
+    <text x="70" y="55" font-family="'JetBrains Mono', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">mido.MidiFile</text>
+  </g>
+
+  <!-- Arrow 1 -> 2 -->
+  <line x1="190" y1="240" x2="230" y2="240" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Stage 2: Event Extraction -->
+  <g transform="translate(230, 185)">
+    <rect width="150" height="110" rx="8" fill="url(#card-bg)" stroke="#27272a" stroke-width="1.5"/>
+    <text x="75" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="700" fill="#fafafa" text-anchor="middle">EVENT EXTRACTION</text>
+    <text x="75" y="55" font-family="'JetBrains Mono', monospace" font-size="10" fill="#71717a" text-anchor="middle">delta ticks &gt; absolute</text>
+    <text x="75" y="72" font-family="'JetBrains Mono', monospace" font-size="10" fill="#71717a" text-anchor="middle">note_on / note_off</text>
+    <text x="75" y="89" font-family="'JetBrains Mono', monospace" font-size="10" fill="#a1a1aa" text-anchor="middle">duration &amp; velocity</text>
+  </g>
+
+  <!-- Split arrows from Event Extraction to Instrument Voices -->
+  <path d="M 380 240 L 420 240 L 420 100 L 450 100" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 380 240 L 450 240" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 380 240 L 420 240 L 420 380 L 450 380" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Stage 3: Synthesizer Voices -->
+  <!-- Voice 1: Piano / Harmonic -->
+  <g transform="translate(450, 65)">
+    <rect width="180" height="70" rx="6" fill="url(#card-hl)" stroke="#3f3f46" stroke-width="1"/>
+    <text x="90" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fafafa" text-anchor="middle">Harmonic Stacking</text>
+    <text x="90" y="48" font-family="'JetBrains Mono', monospace" font-size="9" fill="#a1a1aa" text-anchor="middle">sin(wt) + 0.5sin(2wt) + ...</text>
+  </g>
+
+  <!-- Voice 2: Synth / Hybrid -->
+  <g transform="translate(450, 205)">
+    <rect width="180" height="70" rx="6" fill="url(#card-hl)" stroke="#3f3f46" stroke-width="1"/>
+    <text x="90" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fafafa" text-anchor="middle">Hybrid Oscillator</text>
+    <text x="90" y="48" font-family="'JetBrains Mono', monospace" font-size="9" fill="#a1a1aa" text-anchor="middle">0.65 saw + 0.35 sine</text>
+  </g>
+
+  <!-- Voice 3: Sawtooth -->
+  <g transform="translate(450, 345)">
+    <rect width="180" height="70" rx="6" fill="url(#card-hl)" stroke="#3f3f46" stroke-width="1"/>
+    <text x="90" y="28" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="12" font-weight="600" fill="#fafafa" text-anchor="middle">Sawtooth Generator</text>
+    <text x="90" y="48" font-family="'JetBrains Mono', monospace" font-size="9" fill="#a1a1aa" text-anchor="middle">2 * ((f * t) % 1) - 1</text>
+  </g>
+
+  <!-- Convergence to Envelope & Master Buffer -->
+  <path d="M 630 100 L 665 100 L 665 240 L 690 240" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 630 240 L 690 240" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+  <path d="M 630 380 L 665 380 L 665 240 L 690 240" fill="none" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Stage 4: Envelope & Vector Master Buffer -->
+  <g transform="translate(690, 185)">
+    <rect width="130" height="110" rx="8" fill="url(#card-bg)" stroke="#27272a" stroke-width="1.5"/>
+    <text x="65" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#fafafa" text-anchor="middle">MASTER BUFFER</text>
+    <text x="65" y="55" font-family="'JetBrains Mono', monospace" font-size="9" fill="#71717a" text-anchor="middle">exp(-decay * t)</text>
+    <text x="65" y="72" font-family="'JetBrains Mono', monospace" font-size="9" fill="#71717a" text-anchor="middle">velocity scale</text>
+    <text x="65" y="89" font-family="'JetBrains Mono', monospace" font-size="9" fill="#a1a1aa" text-anchor="middle">NumPy vector sum</text>
+  </g>
+
+  <!-- Arrow 4 -> 5 -->
+  <line x1="820" y1="240" x2="855" y2="240" stroke="#71717a" stroke-width="1.5" marker-end="url(#arrow)"/>
+
+  <!-- Stage 5: Mastering / WAV -->
+  <g transform="translate(855, 185)">
+    <rect width="105" height="110" rx="8" fill="url(#card-bg)" stroke="#27272a" stroke-width="1.5"/>
+    <text x="52" y="32" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif" font-size="11" font-weight="700" fill="#fafafa" text-anchor="middle">OUTPUT</text>
+    <text x="52" y="55" font-family="'JetBrains Mono', monospace" font-size="9" fill="#71717a" text-anchor="middle">tanh saturation</text>
+    <text x="52" y="72" font-family="'JetBrains Mono', monospace" font-size="9" fill="#71717a" text-anchor="middle">peak ceiling</text>
+    <text x="52" y="89" font-family="'JetBrains Mono', monospace" font-size="9" fill="#fafafa" text-anchor="middle">.wav 44.1k</text>
+  </g>
+</svg>
