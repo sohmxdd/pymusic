@@ -222,6 +222,22 @@ pymusic avoids per-sample python loops by offloading all audio calculations to v
 
 ---
 
+## repository anatomy
+
+```
+pymusic/
+├── assets/
+│   ├── banner.svg             # vector header banner
+│   └── signal-flow.svg        # dsp architecture diagram
+├── Kanye West - Stronger.mid  # demo multi-track midi arrangement (7 tracks)
+├── main.py                    # synthesis engine, harmonic stacker & master bus
+├── stronger_code.wav          # rendered 44.1 khz 16-bit master export
+├── .gitignore                 # python environment and cache filters
+└── README.md                  # architectural documentation
+```
+
+---
+
 ## stack
 
 - **numpy** - vector calculations, harmonic generation, signal arrays
