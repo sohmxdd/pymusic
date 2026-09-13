@@ -11,8 +11,12 @@
   <img src="https://img.shields.io/badge/license-MIT-000000?style=flat-square" alt="license" />
 </p>
 
-<!-- banner / cover image placeholder -->
-<!-- <p align="center"><img src="assets/banner.png" alt="pymusic banner" width="100%" /></p> -->
+<p align="center">
+  <img src="assets/banner.svg" alt="pymusic banner" width="100%" />
+</p>
+
+<!-- custom image / cover placeholder -->
+<!-- <p align="center"><img src="assets/cover.png" alt="custom cover" width="100%" /></p> -->
 
 a minimal python sound synthesizer that renders multi-track midi sequences directly into `.wav` audio. no daws, no samples, no external soundfonts—just additive synthesis, harmonic overtone series, exponential decay envelopes, and soft analog-style saturation.
 
