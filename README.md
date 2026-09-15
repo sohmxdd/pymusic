@@ -129,6 +129,15 @@ engine.render_to_file(
 )
 ```
 
+#### recommended genre instrument mappings
+
+| Genre | Recommended `instrument_map` | Sonic Aesthetic |
+| :--- | :--- | :--- |
+| **Hyperpop / Brat** (Charli XCX) | `["synth", "saw", "drums", "square", "piano"]` | Bright, aggressive, punchy transience |
+| **Hip-Hop / Trap** (Kanye West) | `["piano", "harpsichord", "synth", "drums", "guitar", "saw"]` | Rich chord body with analog overtone buzz |
+| **Synthwave / Cyberpunk** | `["saw", "synth", "square", "saw", "drums"]` | Deep filtered saws and 80s arpeggios |
+| **Baroque / Classical** | `["harpsichord", "piano", "guitar"]` | Plucked acoustic clarity & high overtone ring |
+
 ```text
 ┌── terminal ────────────────────────────────────────────────────────────────────────┐
 │ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
@@ -348,6 +357,7 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
