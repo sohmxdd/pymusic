@@ -55,6 +55,46 @@ want to synthesize something other than Kanye West's *Stronger*? pymusic can syn
 > * convert audio (MP3/WAV) to MIDI: use Spotify’s free open-source [Basic Pitch](https://basicpitch.spotify.com/) AI model to transcribe any track into `.mid` in seconds.
 > * DAW export: export multi-track MIDI from Ableton Live, FL Studio, Logic Pro, or GarageBand.
 
+#### complete code walkthrough: rendering *Apple* by Charli XCX
+
+here is the full python script to synthesize *Apple* (or any custom pop/hyperpop track):
+
+```python
+from pymusic.config import AudioConfig
+from pymusic.engine import SynthEngine
+
+def render_apple_song():
+    # 1. configure sample rate, tempo (124 bpm for Apple), and master saturation
+    config = AudioConfig(
+        sample_rate=44100,
+        bpm=124.0,
+        master_gain=0.18,
+        peak_ceiling=0.92
+    )
+
+    engine = SynthEngine(config=config)
+
+    # 2. assign instruments to the midi channels in order
+    # matches charli xcx's electronic hyperpop energy
+    instrument_map = [
+        "synth",    # track 0: bright lead melody
+        "saw",      # track 1: heavy sub-bassline
+        "drums",    # track 2: punchy kick & snare rhythm
+        "square",   # track 3: 8-bit chiptune arpeggio
+        "piano",    # track 4: foundational acoustic chord backing
+    ]
+
+    # 3. render directly to a finished .wav file
+    engine.render_to_file(
+        midi_path="Apple - Charli XCX.mid",
+        output_path="apple_charli_xcx.wav",
+        instrument_map=instrument_map
+    )
+
+if __name__ == "__main__":
+    render_apple_song()
+```
+
 ```text
 ┌── terminal ────────────────────────────────────────────────────────────────────────┐
 │ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
@@ -274,6 +314,7 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
