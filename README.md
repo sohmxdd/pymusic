@@ -34,6 +34,27 @@ a modular, high-performance object-oriented python synthesizer that renders mult
 └────────────────────────────────────────────────────────────────────────────────────┘
 ```
 
+### how to render any custom song (e.g. *Apple* by Charli XCX)
+
+want to synthesize something other than Kanye West's *Stronger*? pymusic can synthesize **any** song in 4 straightforward steps:
+
+1. **grab the `.mid` file**: download the MIDI transcription of your chosen song (e.g., `Apple - Charli XCX.mid`).
+2. **find the song tempo**: look up the BPM (e.g., *Apple* runs at `124 BPM`).
+3. **map the instrument tracks**: assign built-in voices (`piano`, `synth`, `saw`, `drums`, `square`, `guitar`) to the MIDI channels.
+4. **run the synthesis engine**: render straight to CD-quality `44.1 kHz` floating-point `.wav` in milliseconds.
+
+```text
+┌── terminal ────────────────────────────────────────────────────────────────────────┐
+│ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
+│ ['piano', 'harpsichord', 'synth', 'guitar', 'saw', 'drums', 'square']              │
+│                                                                                    │
+│ $ python main.py --midi "Apple - Charli XCX.mid" --bpm 124                         │
+│ [pymusic] parsing 5 multi-track channels from 'Apple - Charli XCX.mid'...          │
+│ [pymusic] rendering 44.1 kHz 64-bit master buffer with tanh saturation...          │
+│ [pymusic] exported master track -> 'apple_charli_xcx.wav' (0.34s)                  │
+└────────────────────────────────────────────────────────────────────────────────────┘
+```
+
 ---
 
 ## architecture & oop class hierarchy
@@ -241,4 +262,5 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
