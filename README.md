@@ -319,6 +319,23 @@ engine.render_to_file(
 )
 ```
 
+### exporting audio bit-depths & pcm formats
+
+use `AudioExporter` to output various WAV subtypes:
+
+```python
+from pymusic.exporter import AudioExporter
+
+# export 32-bit float studio master
+AudioExporter.export_wav("master_float.wav", audio, sample_rate=44100, subtype="FLOAT")
+
+# export 24-bit studio pcm
+AudioExporter.export_wav("master_24bit.wav", audio, sample_rate=44100, subtype="PCM_24")
+
+# export standard 16-bit cd pcm
+AudioExporter.export_wav("master_16bit.wav", audio, sample_rate=44100, subtype="PCM_16")
+```
+
 ---
 
 ## performance & vectorization
@@ -427,6 +444,7 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
