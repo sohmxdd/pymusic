@@ -359,6 +359,42 @@ pymusic/
 
 ---
 
+## frequently asked questions (faq)
+
+<details>
+<summary><strong>can i render songs in different tempos without changing pitch?</strong></summary>
+<br/>
+
+**yes.** because pymusic computes continuous waveforms directly from frequency formulas ($f(n) = 440 \cdot 2^{(n-69)/12}$), modifying the `bpm` in `AudioConfig` scales note timing and durations without affecting the acoustic pitch or introducing time-stretch artifacts.
+</details>
+
+<details>
+<summary><strong>what happens if my midi has more tracks than the instrument map?</strong></summary>
+<br/>
+
+pymusic uses safe cyclic fallback indexing (`min(index, len(instruments) - 1)`). if your midi has 12 tracks and you supply 4 instruments, subsequent tracks automatically reuse the last mapped voice profile.
+</details>
+
+<details>
+<summary><strong>can i use microtonal tuning or non-440hz pitch standards (e.g. 432hz)?</strong></summary>
+<br/>
+
+**yes.** initialize `FrequencyTuner` with your target reference pitch:
+```python
+tuner = pymusic.FrequencyTuner(reference_pitch=432.0, reference_note=69)
+engine = pymusic.SynthEngine(tuner=tuner)
+```
+</details>
+
+<details>
+<summary><strong>how does pymusic prevent loud multi-track chords from clipping?</strong></summary>
+<br/>
+
+the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x)`) with a peak normalizer holding output ceiling at `-0.7 dBFS` ($0.92$ amplitude). even 10 simultaneous voices sum smoothly without digital square-wave clipping.
+</details>
+
+---
+
 ## technical specifications
 
 | Parameter | Specification | Note |
@@ -376,6 +412,7 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
