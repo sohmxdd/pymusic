@@ -430,6 +430,14 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 
 ---
 
+## troubleshooting & tips
+
+* **MIDI ticks vs seconds**: if a song plays too fast or too slow, verify the `bpm` passed into `AudioConfig(bpm=...)` matches the original track's tempo.
+* **polyphony performance**: PyMusic handles unlimited simultaneous voices because note additions use vectorized array slicing (`master[start:end] += sound`).
+* **handling missing notes**: ensure note-on messages in the MIDI file have velocity $> 0$; note-on with velocity 0 is treated as note-off per the MIDI 1.0 standard.
+
+---
+
 ## technical specifications
 
 | Parameter | Specification | Note |
@@ -447,6 +455,7 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
