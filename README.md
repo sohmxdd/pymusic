@@ -95,6 +95,40 @@ if __name__ == "__main__":
     render_apple_song()
 ```
 
+#### advanced recipe: custom hyperpop & *brat* detuned lead
+
+want that signature wide, buzzing hyperpop timbre? define a custom `Instrument` class with an ADSR envelope and slight phase detuning:
+
+```python
+import numpy as np
+from pymusic.instruments.base import Instrument
+from pymusic.envelopes import ADSREnvelope
+from pymusic.engine import SynthEngine
+from pymusic.config import AudioConfig
+
+class HyperpopLead(Instrument):
+    def __init__(self):
+        # snappy 20ms attack, quick decay, 60% sustain, 150ms release
+        envelope = ADSREnvelope(attack=0.02, decay=0.10, sustain=0.60, release=0.15)
+        super().__init__(name="hyperpop_lead", envelope=envelope)
+
+    def synthesize_timbre(self, frequency: float, t: np.ndarray) -> np.ndarray:
+        # dual detuned saw oscillators for wide stereo chorus character
+        saw_primary = 2.0 * ((frequency * t) % 1.0) - 1.0
+        saw_detuned = 2.0 * (((frequency * 1.008) * t) % 1.0) - 1.0
+        return 0.5 * saw_primary + 0.5 * saw_detuned
+
+# register dynamically into engine
+engine = SynthEngine(config=AudioConfig(bpm=124.0))
+engine.registry.register("hyperpop_lead", HyperpopLead)
+
+engine.render_to_file(
+    midi_path="Apple - Charli XCX.mid",
+    output_path="apple_hyperpop_remix.wav",
+    instrument_map=["hyperpop_lead", "saw", "drums"]
+)
+```
+
 ```text
 ┌── terminal ────────────────────────────────────────────────────────────────────────┐
 │ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
@@ -314,6 +348,7 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
