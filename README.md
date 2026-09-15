@@ -20,6 +20,22 @@ a modular, high-performance object-oriented python synthesizer that renders mult
 
 ---
 
+## interactive showcase: synthesize any song in seconds
+
+```text
+┌── terminal ────────────────────────────────────────────────────────────────────────┐
+│ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
+│ ['piano', 'harpsichord', 'synth', 'guitar', 'saw', 'drums', 'square']              │
+│                                                                                    │
+│ $ python main.py --midi "Apple - Charli XCX.mid" --bpm 124                         │
+│ [pymusic] parsing 5 multi-track channels from 'Apple - Charli XCX.mid'...          │
+│ [pymusic] rendering 44.1 kHz 64-bit master buffer with tanh saturation...          │
+│ [pymusic] exported master track -> 'apple_charli_xcx.wav' (0.34s)                  │
+└────────────────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
 ## architecture & oop class hierarchy
 
 <p align="center">
@@ -225,3 +241,4 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
