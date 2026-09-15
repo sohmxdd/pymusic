@@ -138,6 +138,15 @@ engine.render_to_file(
 | **Synthwave / Cyberpunk** | `["saw", "synth", "square", "saw", "drums"]` | Deep filtered saws and 80s arpeggios |
 | **Baroque / Classical** | `["harpsichord", "piano", "guitar"]` | Plucked acoustic clarity & high overtone ring |
 
+#### programmatic one-liner rendering
+
+render any song in a single line of Python:
+
+```bash
+# quick render with custom midi and bpm
+python -c 'import pymusic; pymusic.SynthEngine(pymusic.AudioConfig(bpm=124.0)).render_to_file("Apple - Charli XCX.mid", "apple.wav")'
+```
+
 ```text
 ┌── terminal ────────────────────────────────────────────────────────────────────────┐
 │ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
@@ -357,6 +366,7 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
