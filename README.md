@@ -43,6 +43,18 @@ want to synthesize something other than Kanye West's *Stronger*? pymusic can syn
 3. **map the instrument tracks**: assign built-in voices (`piano`, `synth`, `saw`, `drums`, `square`, `guitar`) to the MIDI channels.
 4. **run the synthesis engine**: render straight to CD-quality `44.1 kHz` floating-point `.wav` in milliseconds.
 
+#### do i need a `.mid` (midi) file?
+
+**yes, absolutely.** a `.mid` file contains **no recorded audio**. instead, it acts as the **digital sheet music** for pymusic:
+* it records exact note numbers (e.g. `60` = Middle C), velocity dynamics (`0–127`), start tick timestamps, and note durations.
+* pymusic reads these mathematical instructions and synthesizes the physical acoustic waveforms from scratch.
+
+> [!TIP]
+> **where to find `.mid` files for your favorite songs:**
+> * free midi databases: *BitMidi*, *Nonstop2k*, *MidiShow*, and community GitHub repositories.
+> * convert audio (MP3/WAV) to MIDI: use Spotify’s free open-source [Basic Pitch](https://basicpitch.spotify.com/) AI model to transcribe any track into `.mid` in seconds.
+> * DAW export: export multi-track MIDI from Ableton Live, FL Studio, Logic Pro, or GarageBand.
+
 ```text
 ┌── terminal ────────────────────────────────────────────────────────────────────────┐
 │ $ python -c 'import pymusic; print(pymusic.SynthEngine().registry.available())'    │
@@ -262,5 +274,6 @@ pymusic/
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
