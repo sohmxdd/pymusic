@@ -456,6 +456,16 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
 
+<p align="center">
+  <br/>
+  <a href="#pymusic"><strong>↑ back to top</strong></a>
+  <br/><br/>
+  <a href="https://github.com/sohmxdd/pymusic/stargazers"><img src="https://img.shields.io/github/stars/sohmxdd/pymusic?style=social" alt="GitHub Stars"/></a>
+  <a href="https://github.com/sohmxdd/pymusic/network/members"><img src="https://img.shields.io/github/forks/sohmxdd/pymusic?style=social" alt="GitHub Forks"/></a>
+  <a href="https://github.com/sohmxdd/pymusic/issues"><img src="https://img.shields.io/github/issues/sohmxdd/pymusic?style=flat-square" alt="Issues"/></a>
+</p>
+
+
 
 
 
