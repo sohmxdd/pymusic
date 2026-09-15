@@ -211,6 +211,21 @@ python -c ''import pymusic; pymusic.SynthEngine(pymusic.AudioConfig(bpm=124.0)).
 
 ## voice matrix
 
+### built-in instrument quick reference
+
+```python
+from pymusic.instruments import Piano, Harpsichord, Synth, Guitar, Saw, NoiseDrum, SquareWave
+
+# instantiate with customized decay or harmonic mixes:
+piano = Piano(decay=2.5)              # acoustic grand tone
+harpsichord = Harpsichord(decay=6.0)  # metallic plucked baroque
+synth = Synth(decay=2.0, saw_mix=0.65)# hybrid saw/sine lead
+guitar = Guitar(decay=5.0)            # 2nd harmonic pluck
+saw = Saw(decay=3.0)                  # pure raw bipolar saw
+drums = NoiseDrum(decay=12.0)         # white noise + sub-bass kick
+square = SquareWave(decay=3.5, duty=0.5) # 8-bit chiptune square
+```
+
 | Voice | Class | Oscillator Formula | Harmonics & Weights | Decay ($\lambda$) | Character |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `piano` | `Piano` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.5) + 3f_0 (0.25)$ | $2.5$ | warm acoustic tone, rich body, gentle release |
@@ -412,6 +427,7 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
