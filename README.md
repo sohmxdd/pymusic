@@ -18,6 +18,9 @@
 
 a modular, high-performance object-oriented python synthesizer that renders multi-track midi sequences directly into `.wav` audio. no daws, no samples, no external soundfonts—pure additive synthesis, harmonic overtone stacking, polymorphic instrument classes, and analog-style soft saturation.
 
+> [!NOTE]
+> **Zero Audio Samples**: PyMusic never loads pre-recorded WAV or SF2 samples into memory. Every sample in the 44.1 kHz stream is evaluated in real time from mathematical sine, sawtooth, and envelope decay functions.
+
 ---
 
 ## interactive showcase: synthesize any song in seconds
@@ -444,6 +447,7 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 ## license
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
+
 
 
 
