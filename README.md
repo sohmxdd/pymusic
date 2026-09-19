@@ -290,6 +290,8 @@ pip install numpy soundfile mido
 
 ### render audio
 
+render the default 7-track arrangement of Kanye West's *Stronger*:
+
 ```bash
 python main.py
 ```
