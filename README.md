@@ -131,7 +131,7 @@ from pymusic.config import AudioConfig
 
 class HyperpopLead(Instrument):
     def __init__(self):
-        # snappy 20ms attack, quick decay, 60% sustain, 150ms release
+        # ADSR parameters: Attack (20ms), Decay (100ms), Sustain Level (60%), Release (150ms)
         envelope = ADSREnvelope(attack=0.02, decay=0.10, sustain=0.60, release=0.15)
         super().__init__(name="hyperpop_lead", envelope=envelope)
 
