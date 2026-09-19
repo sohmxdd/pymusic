@@ -478,6 +478,8 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 
 ## technical specifications
 
+[↑ Back to Table of Contents](#pymusic)
+
 | Parameter | Specification | Note |
 | :--- | :--- | :--- |
 | **Sample Rate** | `44,100 Hz` (CD standard) | Configurable via `AudioConfig.sample_rate` |
