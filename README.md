@@ -195,6 +195,8 @@ python -c ''import pymusic; pymusic.SynthEngine(pymusic.AudioConfig(bpm=124.0)).
 
 ## architecture & oop class hierarchy
 
+[↑ Back to Table of Contents](#pymusic)
+
 <p align="center">
   <img src="assets/signal-flow.svg" alt="signal flow architecture" width="100%" />
 </p>
