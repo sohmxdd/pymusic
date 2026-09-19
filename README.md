@@ -415,7 +415,7 @@ pymusic/
 │       ├── drums.py
 │       ├── square.py
 │       └── registry.py        # InstrumentRegistry factory
-├── tests/                     # comprehensive test suite (14 tests)
+├── tests/                     # unittest test suite (14 test cases)
 │   ├── test_tuning_envelopes.py
 │   ├── test_instruments.py
 │   ├── test_parser.py
