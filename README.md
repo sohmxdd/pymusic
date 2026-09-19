@@ -94,6 +94,7 @@ def render_apple_song():
         peak_ceiling=0.92
     )
 
+    # initialize the synthesis engine with our audio configuration
     engine = SynthEngine(config=config)
 
     # 2. assign instruments to the midi channels in order
