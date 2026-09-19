@@ -383,7 +383,7 @@ pymusic avoids per-sample python loops by offloading all audio calculations to v
 
 - **pre-allocated master buffer**: the master array in `MasterBus` is allocated once upfront, maintaining contiguous cache locality throughout track summation.
 - **vectorized time arrays**: time slices `t = np.arange(length) / sample_rate` evaluate trigonometric harmonic series across whole buffers simultaneously.
-- **sub-second render velocity**: renders a complete 40-second 7-track multi-instrument arrangement (~1.8 million audio samples) in under `0.35 seconds` on modern hardware.
+- **sub-second render velocity**: renders a complete 40-second 7-track multi-instrument arrangement (~1.8 million audio samples) in under `0.35 seconds` on standard CPU hardware.
 
 ---
 
