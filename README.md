@@ -3,7 +3,7 @@
 > converting midi into raw audio using pure math, numpy, and zero soundfonts.
 
 <p align="left">
-  <img src="https://img.shields.io/badge/python-3.10+-000000?style=flat-square&logo=python&logoColor=white" alt="python" />
+  <img src="https://img.shields.io/badge/python-3.10%20%7C%203.11%20%7C%203.12%20%7C%203.13%20%7C%203.14-000000?style=flat-square&logo=python&logoColor=white" alt="python" />
   <img src="https://img.shields.io/badge/dsp-additive%20synthesis-000000?style=flat-square" alt="dsp" />
   <img src="https://img.shields.io/badge/architecture-modular%20OOP-000000?style=flat-square" alt="oop" />
   <img src="https://img.shields.io/badge/sample%20rate-44.1%20kHz-000000?style=flat-square" alt="sample rate" />
