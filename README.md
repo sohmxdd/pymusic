@@ -251,7 +251,7 @@ drums = NoiseDrum(decay=12.0)         # white noise + sub-bass kick
 square = SquareWave(decay=3.5, duty=0.5) # 8-bit chiptune square
 ```
 
-| Voice | Class | Oscillator Formula | Harmonics & Weights | Decay ($\lambda$) | Character |
+| Voice | Python Class | Oscillator Formula | Overtones & Weights | Decay ($\lambda$) | Character |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | `piano` | `Piano` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.5) + 3f_0 (0.25)$ | $2.5$ | warm acoustic tone, rich body, gentle release |
 | `harpsichord` | `Harpsichord` | Additive Sinusoid | $f_0 (1.0) + 2f_0 (0.35) + 4f_0 (0.15)$ | $6.0$ | sharp transient attack, metallic register |
