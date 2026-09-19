@@ -496,6 +496,8 @@ the master bus combines an analog-style soft saturator (`np.tanh(master_gain * x
 
 mit license. crafted with pure math, numpy, and clean object-oriented architecture.
 
+> *“Where words fail, music speaks—and math synthesizes.”*
+
 <p align="center">
   <br/>
   <a href="#pymusic"><strong>↑ back to top</strong></a>
