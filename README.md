@@ -344,6 +344,9 @@ engine.render_to_file(
 )
 ```
 
+> [!NOTE]
+> **Monophonic & Polyphonic Mixing**: PyMusic generates continuous 64-bit floating-point master buffers that scale seamlessly across 1 to 100+ simultaneous polyphonic voices before exporting to single or multi-channel WAV.
+
 ### AudioConfig parameters
 
 | Parameter | Default Value | Description |
