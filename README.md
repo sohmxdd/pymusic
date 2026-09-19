@@ -227,7 +227,7 @@ python -c ''import pymusic; pymusic.SynthEngine(pymusic.AudioConfig(bpm=124.0)).
                     ▼
 ┌──────────────────────────────────────────┐
 │              AudioExporter               │
-│  • float64 / PCM16 / WAV export via sf   │
+│  • float64 / PCM16 / WAV export via sf   │  ──► Final Audio (.wav)
 └──────────────────────────────────────────┘
 ```
 
