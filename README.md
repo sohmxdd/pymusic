@@ -432,6 +432,8 @@ pymusic/
 
 ## frequently asked questions (faq)
 
+[↑ Back to Table of Contents](#pymusic)
+
 <details>
 <summary><strong>can i render songs in different tempos without changing pitch?</strong></summary>
 <br/>
