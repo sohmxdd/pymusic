@@ -165,7 +165,7 @@ engine.render_to_file(
 
 render any song in a single line of Python:
 
-```bash
+```shell
 # quick render with custom midi and bpm
 python -c ''import pymusic; pymusic.SynthEngine(pymusic.AudioConfig(bpm=124.0)).render_to_file("Apple - Charli XCX.mid", "apple.wav")''
 ```
