@@ -299,7 +299,7 @@ the rendered track will be exported as `stronger_code.wav` at 44.1 khz.
 ### running test suite
 
 ```bash
-python -m unittest discover -s tests -p "test_*.py"
+python -m unittest discover -s tests -p "test_*.py" -v
 ```
 
 ---
