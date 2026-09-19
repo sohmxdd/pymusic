@@ -344,6 +344,15 @@ engine.render_to_file(
 )
 ```
 
+### AudioConfig parameters
+
+| Parameter | Default Value | Description |
+| :--- | :--- | :--- |
+| `sample_rate` | `44100` | Sample frequency in Hz (CD quality standard) |
+| `bpm` | `104.0` | Beats per minute tempo |
+| `master_gain` | `0.15` | Pre-saturation gain staging factor |
+| `peak_ceiling` | `0.92` | Normalized true-peak ceiling (-0.7 dBFS margin) |
+
 ### exporting audio bit-depths & pcm formats
 
 use `AudioExporter` to output various WAV subtypes:
