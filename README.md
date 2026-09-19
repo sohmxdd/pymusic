@@ -23,6 +23,25 @@ a modular, high-performance object-oriented python synthesizer that renders mult
 
 ---
 
+
+<details>
+<summary><strong>Table of Contents</strong> (click to expand)</summary>
+
+- [Interactive Showcase: Synthesize Any Song](#interactive-showcase-synthesize-any-song-in-seconds)
+  - [How to Render Any Custom Song](#how-to-render-any-custom-song-eg-apple-by-charli-xcx)
+  - [MIDI Sheet Music Requirements](#do-i-need-a-mid-midi-file)
+  - [Charli XCX Walkthrough](#complete-code-walkthrough-rendering-apple-by-charli-xcx)
+  - [Custom Sound Design Recipe](#advanced-recipe-custom-hyperpop--brat-detuned-lead)
+- [Architecture & Class Hierarchy](#architecture--oop-class-hierarchy)
+- [Voice Matrix](#voice-matrix)
+- [Quick Start](#quickstart)
+- [Python API & Custom Instruments](#python-api--custom-instruments)
+- [Technical Specifications](#technical-specifications)
+- [Frequently Asked Questions](#frequently-asked-questions-faq)
+- [License](#license)
+
+</details>
+
 ## interactive showcase: synthesize any song in seconds
 
 ```text
